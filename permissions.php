@@ -3,7 +3,7 @@ add_action('init', function() {
     if (get_role( 'cadastrador_editais' )) {
         remove_role( 'cadastrador_editais' );
     }
-    add_role('cadastrador_cursos', __('Cadastrador de Editais'), array(
+    add_role('cadastrador_editais', __('Cadastrador de Editais'), array(
         'read'                   => true,
         'upload_files'           => true,
 
