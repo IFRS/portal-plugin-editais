@@ -6,6 +6,7 @@ add_action('init', function() {
     add_role('cadastrador_editais', __('Cadastrador de Editais'), array(
         'read'                   => true,
         'upload_files'           => true,
+        'manage_files'           => true,
 
         'create_editais'         => true,
         'edit_editais'           => true,
