@@ -15,4 +15,3 @@ Domain Path: /lang
 
 require_once('edital-category.php');
 require_once('edital.php');
-require_once('permissions.php');
