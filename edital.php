@@ -29,16 +29,16 @@ if ( ! function_exists('edital_post_type') ) {
 
 			// primitive caps used outside of map_meta_cap()
 			'edit_posts'             => 'edit_editais',
-			'edit_others_posts'      => 'manage_editais',
-			'publish_posts'          => 'manage_editais',
+			'edit_others_posts'      => 'edit_editais',
+			'publish_posts'          => 'publish_editais',
 			'read_private_posts'     => 'read',
 
 			// primitive caps used inside of map_meta_cap()
 			'read'                   => 'read',
-			'delete_posts'           => 'manage_editais',
-			'delete_private_posts'   => 'manage_editais',
-			'delete_published_posts' => 'manage_editais',
-			'delete_others_posts'    => 'manage_editais',
+			'delete_posts'           => 'delete_editais',
+			'delete_private_posts'   => 'delete_editais',
+			'delete_published_posts' => 'delete_editais',
+			'delete_others_posts'    => 'delete_editais',
 			'edit_private_posts'     => 'edit_editais',
 			'edit_published_posts'   => 'edit_editais',
 		);
