@@ -6,7 +6,7 @@ add_action('init', function() {
     $wp_post_types['attachment']->cap->delete_posts = 'delete_files';
 });
 
-register_activation_hook(__FILE__, function () {
+function ifrs_portal_editais_addRoles() {
     if (!get_role('cadastrador_editais')) {
         add_role('cadastrador_editais', __('Cadastrador de Editais'), array(
             'read'                   => true,
@@ -40,13 +40,13 @@ register_activation_hook(__FILE__, function () {
             'assign_edital_status'   => true
         ));
     }
-});
+}
 
-register_deactivation_hook(__FILE__, function () {
+function ifrs_portal_editais_removeRoles() {
     if (get_role('cadastrador_editais')) {
         remove_role('cadastrador_editais');
     }
     if (get_role('gerente_editais')) {
         remove_role('gerente_editais');
     }
-});
+}

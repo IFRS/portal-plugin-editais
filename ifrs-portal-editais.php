@@ -18,3 +18,13 @@ require_once('edital-category.php');
 require_once('edital-status.php');
 require_once('edital.php');
 require_once('roles.php');
+
+register_activation_hook(__FILE__, function () {
+    flush_rewrite_rules();
+    ifrs_portal_editais_addRoles();
+});
+
+register_deactivation_hook(__FILE__, function () {
+    flush_rewrite_rules();
+    ifrs_portal_editais_removeRoles();
+});
