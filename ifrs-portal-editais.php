@@ -17,3 +17,4 @@ require_once('taxonomy-single-term/class.taxonomy-single-term.php');
 require_once('edital-category.php');
 require_once('edital-status.php');
 require_once('edital.php');
+require_once('roles.php');
