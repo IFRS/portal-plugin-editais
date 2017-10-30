@@ -7,6 +7,14 @@ add_action('init', function() {
 });
 
 function ifrs_portal_editais_addRoles() {
+    $admin = get_role('administrator');
+    $admin->add_cap('create_editais');
+    $admin->add_cap('publish_editais');
+    $admin->add_cap('edit_editais');
+    $admin->add_cap('delete_editais');
+    $admin->add_cap('assign_edital_category');
+    $admin->add_cap('assign_edital_status');
+
     if (!get_role('cadastrador_editais')) {
         add_role('cadastrador_editais', __('Cadastrador de Editais'), array(
             'read'                   => true,
@@ -43,6 +51,14 @@ function ifrs_portal_editais_addRoles() {
 }
 
 function ifrs_portal_editais_removeRoles() {
+    $admin = get_role('administrator');
+    $admin->remove_cap('create_editais');
+    $admin->remove_cap('publish_editais');
+    $admin->remove_cap('edit_editais');
+    $admin->remove_cap('delete_editais');
+    $admin->remove_cap('assign_edital_category');
+    $admin->remove_cap('assign_edital_status');
+
     if (get_role('cadastrador_editais')) {
         remove_role('cadastrador_editais');
     }
