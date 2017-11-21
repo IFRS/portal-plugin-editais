@@ -2,8 +2,8 @@
 // Fix Media Permissions
 add_action('init', function() {
     global $wp_post_types;
-    $wp_post_types['attachment']->cap->edit_posts = 'edit_files';
-    $wp_post_types['attachment']->cap->delete_posts = 'delete_files';
+    $wp_post_types['attachment']->cap->edit_posts = 'edit_uploads';
+    $wp_post_types['attachment']->cap->delete_posts = 'delete_uploads';
 });
 
 function ifrs_portal_editais_addRoles() {
@@ -19,8 +19,8 @@ function ifrs_portal_editais_addRoles() {
         add_role('cadastrador_editais', __('Cadastrador de Editais'), array(
             'read'                   => true,
             'upload_files'           => true,
-            'edit_files'             => true,
-            'delete_files'           => false,
+            'edit_uploads'           => true,
+            'delete_uploads'         => false,
 
             'create_editais'         => true,
             'publish_editais'        => true,
@@ -36,8 +36,8 @@ function ifrs_portal_editais_addRoles() {
         add_role('gerente_editais', __('Gerente de Editais'), array(
             'read'                   => true,
             'upload_files'           => true,
-            'edit_files'             => true,
-            'delete_files'           => true,
+            'edit_uploads'           => true,
+            'delete_uploads'         => true,
 
             'create_editais'         => true,
             'publish_editais'        => true,
