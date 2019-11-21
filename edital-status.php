@@ -42,12 +42,3 @@ if ( ! function_exists( 'edital_status_taxonomy' ) ) {
     // Hook into the 'init' action
     add_action( 'init', 'edital_status_taxonomy', 0 );
 }
-
-// Single Term
-$single_term_edital_status = new Taxonomy_Single_Term( 'edital_status' );
-$single_term_edital_status->set( 'priority', 'default' );
-// $single_term_edital_status->set( 'context', 'normal' );
-$single_term_edital_status->set( 'metabox_title', __( 'Status', 'ifrs-portal-plugin-editais' ) );
-$single_term_edital_status->set( 'force_selection', true );
-$single_term_edital_status->set( 'indented', false );
-$single_term_edital_status->set( 'allow_new_terms', false );

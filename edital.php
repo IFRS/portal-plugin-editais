@@ -126,6 +126,40 @@ function editais_meta_boxes( $meta_boxes ) {
         ),
     );
 
+    $meta_boxes[] = array(
+        'title'      => __( 'Categorias do Edital', 'ifrs-portal-plugin-editais' ),
+        'context'    => 'side',
+        'priority'   => 'low',
+        'post_types' => 'edital',
+        'fields'     => array(
+            array(
+                'id'             => 'edital_category',
+                'type'           => 'taxonomy',
+                'taxonomy'       => 'edital_category',
+                'add_new'        => false,
+                'remove_default' => true,
+                'field_type'     => 'checkbox_tree',
+            )
+        )
+    );
+
+    $meta_boxes[] = array(
+        'title'      => __( 'Status do Edital', 'ifrs-portal-plugin-editais' ),
+        'context'    => 'side',
+        'priority'   => 'low',
+        'post_types' => 'edital',
+        'fields'     => array(
+            array(
+                'id'             => 'edital_status',
+                'type'           => 'taxonomy',
+                'taxonomy'       => 'edital_status',
+                'add_new'        => false,
+                'remove_default' => true,
+                'field_type'     => 'radio_list',
+            )
+        )
+    );
+
     return $meta_boxes;
 }
 add_filter( 'rwmb_meta_boxes', 'editais_meta_boxes' );

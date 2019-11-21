@@ -13,7 +13,6 @@ Text Domain: ifrs-portal-plugin-editais
 Domain Path: /lang
 */
 
-require_once('taxonomy-single-term/class.taxonomy-single-term.php');
 require_once('edital-category.php');
 require_once('edital-status.php');
 require_once('edital.php');
