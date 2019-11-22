@@ -163,3 +163,26 @@ function editais_meta_boxes( $meta_boxes ) {
     return $meta_boxes;
 }
 add_filter( 'rwmb_meta_boxes', 'editais_meta_boxes' );
+
+/**
+ * Templates
+ */
+add_filter('archive_template', function($template) {
+    global $post;
+
+    if ( is_post_type_archive('edital') && empty(locate_template('archive-edital.php', false))) {
+        return plugin_dir_path(__FILE__) . 'templates/archive-edital.php';
+    }
+
+    return $template;
+});
+
+add_filter('single_template', function($template) {
+    global $post;
+
+    if ( is_singular('edital') && empty(locate_template('single-edital.php', false))) {
+        return plugin_dir_path(__FILE__) . 'templates/single-edital.php';
+    }
+
+    return $template;
+});

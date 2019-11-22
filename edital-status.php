@@ -42,3 +42,16 @@ if ( ! function_exists( 'edital_status_taxonomy' ) ) {
     // Hook into the 'init' action
     add_action( 'init', 'edital_status_taxonomy', 0 );
 }
+
+/**
+ * Template
+ */
+add_filter('taxonomy_template', function($template) {
+    global $post;
+
+    if ( is_tax('edital_status') && empty(locate_template('taxonomy-edital_status.php', false))) {
+        return plugin_dir_path(__FILE__) . 'templates/taxonomy-edital_status.php';
+    }
+
+    return $template;
+});

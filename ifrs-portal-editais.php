@@ -16,6 +16,7 @@ Domain Path: /lang
 require_once('edital-category.php');
 require_once('edital-status.php');
 require_once('edital.php');
+require_once('queries.php');
 require_once('roles.php');
 
 register_activation_hook(__FILE__, function () {
