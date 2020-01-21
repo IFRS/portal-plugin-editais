@@ -49,9 +49,10 @@ class Editais_Widget extends WP_Widget {
                 </div>
             </div>
 
+            <?php wp_reset_query(); ?>
+
             <div class="row">
                 <div class="col-12">
-                    <?php wp_reset_query(); ?>
                     <div class="acesso-todos-editais">
                         <hr class="acesso-todos-editais__separador">
                         <a href="<?php echo get_post_type_archive_link( 'edital' ); ?>" class="float-right acesso-todos-editais__link"><?php _e('Acesse todos os Editais'); ?></a>
