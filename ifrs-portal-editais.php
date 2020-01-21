@@ -18,6 +18,7 @@ require_once('edital-status.php');
 require_once('edital.php');
 require_once('queries.php');
 require_once('roles.php');
+require_once('widgets/latest.php');
 
 register_activation_hook(__FILE__, function () {
     flush_rewrite_rules();
