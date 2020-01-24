@@ -36,45 +36,6 @@
         <?php endif; ?>
     </div>
     <div class="col-12 col-lg-3">
-        <aside>
-            <?php
-                $terms = wp_list_categories(array(
-                    'echo' => false,
-                    'title_li' => '',
-                    'taxonomy' => 'edital_category',
-                    'hide_empty' => false,
-                ));
-            ?>
-            <div class="row">
-                <div class="col-12">
-                    <h3><?php _e('Categorias'); ?></h3>
-                    <ul class="side-list">
-                        <?php echo $terms; ?>
-                    </ul>
-                </div>
-            </div>
-
-            <?php
-                $terms = wp_list_categories(array(
-                    'echo' => false,
-                    'title_li' => '',
-                    'taxonomy' => 'edital_status',
-                    'hide_empty' => false,
-                ));
-            ?>
-            <div class="row">
-                <div class="col-12">
-                    <h3><?php _e('Status'); ?></h3>
-                    <ul class="side-list">
-                        <?php echo $terms; ?>
-                    </ul>
-                </div>
-            </div>
-
-            <?php if (is_tax('edital_category')) : ?>
-                <br>
-                <a href="<?php echo get_post_type_archive_link( 'edital' ); ?>" class="btn btn-outline-secondary btn-block"><?php _e('Todos os Editais', 'ifrs-portal-theme'); ?></a>
-            <?php endif; ?>
-        </aside>
+        <?php load_template(plugin_dir_path(__FILE__) . 'filter.php'); ?>
     </div>
 </div>
