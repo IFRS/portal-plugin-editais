@@ -44,7 +44,7 @@
             <?php if ( !empty( $edital_files ) ) : ?>
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped edital__table">
                             <thead>
                                 <tr>
                                     <th><?php _e('Publicado em'); ?></th>
