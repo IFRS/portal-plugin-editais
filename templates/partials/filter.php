@@ -2,7 +2,7 @@
     $categorias = get_terms(array(
         'taxonomy' => 'edital_category',
         'hide_empty' => false,
-        'orderby' => 'term_order',
+        'parent' => 0,
     ));
 
     $status = get_terms(array(
@@ -20,10 +20,25 @@
             <?php foreach ($categorias as $categoria): ?>
                 <?php $field_id = uniqid(); ?>
                 <?php $categoria_check = (isset($_POST['edital_category']) && in_array($categoria->slug, $_POST['edital_category'])) || is_tax('edital_category', $categoria->slug); ?>
-                <div class="form-check<?php echo ($categoria->parent !== 0) ? ' ml-3' : '' ?>">
+                <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="edital_category[]" value="<?php echo $categoria->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $categoria_check ? 'checked' : ''; ?>>
                     <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $categoria->name; ?></label>
                 </div>
+                <?php
+                    $filhos = get_terms(array(
+                        'taxonomy' => 'edital_category',
+                        'hide_empty' => false,
+                        'parent' => $categoria->term_id,
+                    ));
+                ?>
+                <?php foreach ($filhos as $filho) : ?>
+                    <?php $field_id = uniqid(); ?>
+                    <?php $filho_check = (isset($_POST['edital_category']) && in_array($filho->slug, $_POST['edital_category'])) || is_tax('edital_category', $filho->slug); ?>
+                    <div class="form-check ml-3">
+                        <input class="form-check-input" type="checkbox" name="edital_category[]" value="<?php echo $filho->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $filho_check ? 'checked' : ''; ?>>
+                        <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $filho->name; ?></label>
+                    </div>
+                <?php endforeach; ?>
             <?php endforeach; ?>
         </fieldset>
         <fieldset>
