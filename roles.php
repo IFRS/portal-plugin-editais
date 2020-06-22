@@ -13,7 +13,13 @@ function ifrs_portal_editais_addRoles() {
     $admin->add_cap('edit_editais');
     $admin->add_cap('delete_editais');
     $admin->add_cap('assign_edital_category');
+    $admin->add_cap('manage_edital_category');
+    $admin->add_cap('edit_edital_category');
+    $admin->add_cap('delete_edital_category');
     $admin->add_cap('assign_edital_status');
+    $admin->add_cap('manage_edital_status');
+    $admin->add_cap('edit_edital_status');
+    $admin->add_cap('delete_edital_status');
 
     if (!get_role('cadastrador_editais')) {
         add_role('cadastrador_editais', __('Cadastrador de Editais'), array(
@@ -57,7 +63,13 @@ function ifrs_portal_editais_removeRoles() {
     $admin->remove_cap('edit_editais');
     $admin->remove_cap('delete_editais');
     $admin->remove_cap('assign_edital_category');
+    $admin->remove_cap('manage_edital_category');
+    $admin->remove_cap('edit_edital_category');
+    $admin->remove_cap('delete_edital_category');
     $admin->remove_cap('assign_edital_status');
+    $admin->remove_cap('manage_edital_status');
+    $admin->remove_cap('edit_edital_status');
+    $admin->remove_cap('delete_edital_status');
 
     if (get_role('cadastrador_editais')) {
         remove_role('cadastrador_editais');
