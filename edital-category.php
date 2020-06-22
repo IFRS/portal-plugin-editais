@@ -34,7 +34,7 @@ if ( ! function_exists( 'edital_category_taxonomy' ) ) {
             'show_in_nav_menus' => true,
             'show_tagcloud'     => false,
             'capabilities'      => $capabilities,
-            'rewrite'           => array('slug' => 'editais/categorias', 'hierarchical' => true, 'with_front' => false),
+            'rewrite'           => array('slug' => 'editais/categorias', 'with_front' => false),
         );
         register_taxonomy( 'edital_category', array( 'edital' ), $args );
     }
