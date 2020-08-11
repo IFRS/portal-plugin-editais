@@ -18,12 +18,7 @@
             ?>
         </h2>
 
-        <p><?php _e('Neste espaço, é possível acessar editais publicados pelos diferentes setores da Reitoria do IFRS. A lista de documentos está organizada por ordem de publicação ou atualização. Os mais atuais aparecem primeiro. É possível, também, consultar por categorias. Basta clicar, no menu à direita, no setor responsável pelo edital procurado. Em alguns casos, há ainda categorias relacionadas ao setor, para facilitar as buscas.', 'ifrs-portal-plugin-editais'); ?></p>
-        <p><?php _e('Editais antigos podem ser buscados no site anterior do IFRS, na página do setor ao qual o edital está vinculado.', 'ifrs-portal-plugin-editais'); ?></p>
-        <p>
-            <em><?php _e('Saiba mais:', 'ifrs-portal-plugin-editais'); ?></em><br/>
-            <?php _e('Edital é um documento oficial escrito que contém informações, determinações e orientações sobre: bolsas de ensino, pesquisa e extensão; concursos para processo seletivo de estudantes; concorrências administrativas; concursos para provimento de cargos públicos (para esses, acesse o menu Concursos);  e outros temas que, por sua natureza, devam ter ampla divulgação.', 'ifrs-portal-plugin-editais'); ?>
-        </p>
+        <?php echo wpautop(get_option( 'ifrs_editais_intro' )); ?>
 
         <?php if (have_posts()) : ?>
             <?php load_template(plugin_dir_path(__FILE__) . 'loop.php'); ?>
