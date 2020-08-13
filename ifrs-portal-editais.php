@@ -4,7 +4,7 @@ defined('ABSPATH') or die('No script kiddies please!');
 Plugin Name: IFRS Portal Editais
 Plugin URI:  https://github.com/IFRS/portal-plugin-editais
 Description: Plugin para gerenciar Editais.
-Version:     1.4.0
+Version:     1.4.1
 Author:      Ricardo Moro
 Author URI:  https://github.com/ricardomoro
 License:     GPL3
