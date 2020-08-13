@@ -18,7 +18,7 @@ if (is_admin()) {
 
                     <form method="POST" action="options.php">
                         <?php
-                            settings_fields( 'default' );
+                            settings_fields( 'ifrs_editais-default' );
                             do_settings_sections( 'ifrs_editais-admin' );
                             submit_button();
                         ?>
@@ -31,7 +31,7 @@ if (is_admin()) {
 
     add_action( 'admin_init', function() use ($options) {
         register_setting(
-            'default', // option_group
+            'ifrs_editais-default', // option_group
             'ifrs_editais_intro', // option_name
             array ( // args
                 'type' => 'string',
@@ -65,7 +65,7 @@ if (is_admin()) {
         );
 
         add_settings_section(
-            'default', // id
+            'ifrs_editais-default', // id
             'Geral', // title
             function() {}, // callback
             'ifrs_editais-admin' // page
@@ -82,7 +82,7 @@ if (is_admin()) {
                 );
             },
             'ifrs_editais-admin', // page
-            'default' // section
+            'ifrs_editais-default' // section
         );
     } );
 }
