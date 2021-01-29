@@ -6,6 +6,36 @@ function ifrs_editais_custom_queries( $query ) {
             $query->set('nopaging', true);
             $query->set('orderby', 'modified');
             $query->set('order', 'DESC');
+
+            $data_inicio = null;
+            if ($_POST['edital-data-inicio']) {
+                $data_inicio = date_format(date_create(sanitize_text_field($_POST['edital-data-inicio'])), 'U');
+            }
+
+            $data_fim = null;
+            if ($_POST['edital-data-fim']) {
+                $data_fim = date_format(date_create(sanitize_text_field($_POST['edital-data-fim'])), 'U');
+            }
+
+            if ($data_inicio || $data_fim) {
+                if ($data_inicio && $data_fim) {
+                    $value = array($data_inicio, $data_fim);
+                    $compare = 'BETWEEN';
+                } else if ($data_inicio && !$data_fim) {
+                    $value = $data_inicio;
+                    $compare = '>=';
+                } else if ($data_fim && !$data_inicio) {
+                    $value = $data_fim;
+                    $compare = '<=';
+                }
+                $query->set('meta_query', array(
+                    array(
+                        'key'     => 'edital_date',
+                        'value'   => $value,
+                        'compare' => $compare,
+                    ),
+                ));
+            }
         }
     }
 }

@@ -10,37 +10,67 @@
     //     'hide_empty' => false,
     //     'orderby' => 'term_order',
     // ));
+
+    $has_filter = isset($_POST['edital-data-inicio']) || isset($_POST['edital-data-fim']) || isset($_POST['edital_category']);
 ?>
 <aside class="filter">
-    <h3 class="filter__title"><?php _e('Filtros'); ?></h3>
+    <?php $collapse_id = uniqid(); ?>
+    <button
+        class="btn btn-link filter__btn<?php echo ($has_filter) ? ' font-weight-bold' : ''; ?>"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collpse-<?php echo $collapse_id; ?>"
+        aria-expanded="<?php echo ($has_filter) ? 'true' : 'false'; ?>"
+        aria-controls="collapse-<?php echo $collapse_id; ?>"
+    >
+        <?php _e('Filtros'); ?>
+    </button>
 
-    <form action="<?php echo get_post_type_archive_link( 'edital' ); ?>" method="POST" class="filter__form">
-        <fieldset>
-            <legend>Categoria</legend>
-            <?php foreach ($categorias as $categoria): ?>
-                <?php $field_id = uniqid(); ?>
-                <?php $categoria_check = (isset($_POST['edital_category']) && in_array($categoria->slug, $_POST['edital_category'])) || is_tax('edital_category', $categoria->slug); ?>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="edital_category[]" value="<?php echo $categoria->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $categoria_check ? 'checked' : ''; ?>>
-                    <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $categoria->name; ?></label>
-                </div>
-                <?php
-                    $filhos = get_terms(array(
-                        'taxonomy' => 'edital_category',
-                        'hide_empty' => false,
-                        'parent' => $categoria->term_id,
-                    ));
-                ?>
-                <?php foreach ($filhos as $filho) : ?>
+    <div class="collapse<?php echo ($has_filter) ? ' show' : ''; ?>" id="collpse-<?php echo $collapse_id; ?>">
+        <form action="<?php echo get_post_type_archive_link( 'edital' ); ?>" method="POST" class="filter__form">
+            <fieldset class="form-row">
+                <legend class="col-12">Data do Edital</legend>
+                <div class="form-group col-12 col-sm-6">
                     <?php $field_id = uniqid(); ?>
-                    <?php $filho_check = (isset($_POST['edital_category']) && in_array($filho->slug, $_POST['edital_category'])) || is_tax('edital_category', $filho->slug); ?>
-                    <div class="form-check ml-3">
-                        <input class="form-check-input" type="checkbox" name="edital_category[]" value="<?php echo $filho->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $filho_check ? 'checked' : ''; ?>>
-                        <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $filho->name; ?></label>
-                    </div>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-        </fieldset>
+                    <label for="<?php echo $field_id; ?>" class="mb-sm-0 mr-sm-1">De</label>
+                    <input type="date" id="<?php echo $field_id; ?>" name="edital-data-inicio" value="<?php echo ($_POST['edital-data-inicio']) ? sanitize_text_field($_POST['edital-data-inicio']) : ''; ?>" class="form-control form-control-sm mr-sm-1">
+                    <small class="form-text text-muted">No formato <em>dia/mês/ano</em>, por exemplo 29/12/2008</small>
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <?php $field_id = uniqid(); ?>
+                    <label for="<?php echo $field_id; ?>" class="mb-sm-0 mr-sm-1">até</label>
+                    <input type="date" id="<?php echo $field_id; ?>" name="edital-data-fim" value="<?php echo ($_POST['edital-data-fim']) ? sanitize_text_field($_POST['edital-data-fim']) : ''; ?>" class="form-control form-control-sm">
+                    <small class="form-text text-muted">No formato <em>dia/mês/ano</em>, por exemplo 29/12/2008</small>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Categoria</legend>
+                <div class="form-group">
+                    <?php foreach ($categorias as $categoria): ?>
+                        <?php $field_id = uniqid(); ?>
+                        <?php $categoria_check = (isset($_POST['edital_category']) && in_array($categoria->slug, $_POST['edital_category'])) || is_tax('edital_category', $categoria->slug); ?>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="edital_category[]" value="<?php echo $categoria->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $categoria_check ? 'checked' : ''; ?>>
+                            <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $categoria->name; ?></label>
+                        </div>
+                        <?php
+                            $filhos = get_terms(array(
+                                'taxonomy' => 'edital_category',
+                                'hide_empty' => false,
+                                'parent' => $categoria->term_id,
+                            ));
+                        ?>
+                        <?php foreach ($filhos as $filho) : ?>
+                            <?php $field_id = uniqid(); ?>
+                            <?php $filho_check = (isset($_POST['edital_category']) && in_array($filho->slug, $_POST['edital_category'])) || is_tax('edital_category', $filho->slug); ?>
+                            <div class="form-check ml-3">
+                                <input class="form-check-input" type="checkbox" name="edital_category[]" value="<?php echo $filho->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $filho_check ? 'checked' : ''; ?>>
+                                <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $filho->name; ?></label>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
             <!-- <fieldset>
                 <legend>Status</legend>
                 <?php foreach ($status as $stat): ?>
@@ -53,9 +83,10 @@
                 <?php endforeach; ?>
             </fieldset> -->
 
-        <div class="btn-group" role="group" aria-label="Ações do Filtro">
-            <input type="submit" value="Filtrar" class="btn btn-primary">
-            <a href="<?php echo get_post_type_archive_link( 'edital' ); ?>" class="btn btn-outline-secondary"><?php _e('Limpar', 'ifrs-portal-plugin-editais'); ?></a>
-        </div>
-    </form>
+            <div class="btn-group" role="group" aria-label="Ações do Filtro">
+                <input type="submit" value="Filtrar" class="btn btn-primary">
+                <a href="<?php echo get_post_type_archive_link( 'edital' ); ?>" class="btn btn-outline-secondary"><?php _e('Limpar', 'ifrs-portal-plugin-editais'); ?></a>
+            </div>
+        </form>
+    </div>
 </aside>
