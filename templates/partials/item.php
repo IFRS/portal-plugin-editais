@@ -61,6 +61,6 @@
         <p><strong><?php _e('Data de Publica&ccedil;&atilde;o:'); ?></strong>&nbsp;<?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'edital_date' ) ); ?></p>
         <p><strong><?php _e('&Uacute;ltima Modifica&ccedil;&atilde;o:'); ?></strong>&nbsp;<?php the_modified_date(); ?></p>
         <p><strong><?php _e('Categorias:'); ?></strong>&nbsp;<?php echo get_the_term_list( get_the_ID(), 'edital_category', '', ', ', '' ); ?></p>
-        <p><strong><?php _e('Status:'); ?></strong>&nbsp;<?php echo get_the_term_list( get_the_ID(), 'edital_status', '', ', ', '' ); ?></p>
+        <!-- <p><strong><?php _e('Status:'); ?></strong>&nbsp;<?php echo get_the_term_list( get_the_ID(), 'edital_status', '', ', ', '' ); ?></p> -->
     </aside>
 </section>

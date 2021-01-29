@@ -8,9 +8,9 @@
                     printf(__(' na categoria %s', 'ifrs-portal-plugin-editais'), single_term_title('', false));
                 }
 
-                if (is_tax('edital_status') && !isset($_POST['edital_status'])) {
-                    printf(__(' com o status %s', 'ifrs-portal-plugin-editais'), single_term_title('', false));
-                }
+            // if (is_tax('edital_status') && !isset($_POST['edital_status'])) {
+            //     printf(__(' com o status %s', 'ifrs-portal-plugin-editais'), single_term_title('', false));
+            // }
 
                 if (is_search() && get_search_query()) {
                     printf(__('<small>(Resultados com o termo &ldquo;%s&rdquo;)</small>', 'ifrs-portal-plugin-editais'), get_search_query());
