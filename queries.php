@@ -9,12 +9,14 @@ function ifrs_editais_custom_queries( $query ) {
 
             $data_inicio = null;
             if ($_POST['edital-data-inicio']) {
-                $data_inicio = date_format(date_create(sanitize_text_field($_POST['edital-data-inicio'])), 'U');
+                $data_inicio = date_create(sanitize_text_field($_POST['edital-data-inicio']));
+                $data_inicio = ($data_inicio) ? date_format($data_inicio, 'U') : null;
             }
 
             $data_fim = null;
             if ($_POST['edital-data-fim']) {
-                $data_fim = date_format(date_create(sanitize_text_field($_POST['edital-data-fim'])), 'U');
+                $data_fim = date_create(sanitize_text_field($_POST['edital-data-fim']));
+                $data_fim = ($data_fim) ? date_format($data_fim, 'U') : null;
             }
 
             if ($data_inicio || $data_fim) {
