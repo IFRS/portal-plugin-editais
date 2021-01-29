@@ -43,11 +43,11 @@ if ( ! function_exists('edital_post_type') ) {
 			'edit_published_posts'   => 'edit_editais',
 		);
         $args = array(
-            'label'               => __('edital', 'ifrs-portal-plugin-editais'),
-            'description'         => __('Editais', 'ifrs-portal-plugin-editais'),
+            'label'               => __( 'edital', 'ifrs-portal-plugin-editais' ),
+            'description'         => __( 'Editais', 'ifrs-portal-plugin-editais' ),
             'labels'              => $labels,
-            'supports'            => array('title', 'editor', 'revisions'),
-            'taxonomies'          => array('edital_category'),
+            'supports'            => array( 'title', 'editor', 'revisions' ),
+            'taxonomies'          => array( 'edital_category' ),
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
@@ -60,15 +60,14 @@ if ( ! function_exists('edital_post_type') ) {
             'has_archive'         => true,
             'exclude_from_search' => false,
             'publicly_queryable'  => true,
-            'capability_type'     => array('edital', 'editais'),
+            'capability_type'     => array( 'edital', 'editais' ),
             'map_meta_cap'        => true,
             'capabilities'        => $capabilities,
-            'rewrite'             => array('slug' => 'editais'),
+            'rewrite'             => array( 'slug' => 'editais' ),
         );
         register_post_type( 'edital', $args );
     }
 
-    // Hook into the 'init' action
     add_action( 'init', 'edital_post_type', 1 );
 }
 
@@ -78,18 +77,30 @@ function editais_meta_boxes( $meta_boxes ) {
         'title'      => __( 'Dados do Edital', 'ifrs-portal-plugin-editais' ),
         'post_types' => 'edital',
         'fields'     => array(
+            // array(
+            //     'id'             => 'edital_number',
+            //     'name'           => __( 'Número de Publicação', 'ifrs-portal-plugin-editais' ),
+            //     'desc'           => __( 'Insira o número oficial do edital.', 'ifrs-portal-plugin-editais' ),
+            //     'type'           => 'text',
+            //     'size'           => 5,
+            //     'attributes'     => array(
+            //         'required'   => true,
+            //         'pattern'    => '\d*',
+            //     ),
+
+            // ),
             array(
                 'id'             => 'edital_date',
                 'name'           => __( 'Data de Publicação', 'ifrs-portal-plugin-editais' ),
-                'desc'           => __('Selecione a data de publicação oficial do Edital', 'ifrs-portal-plugin-editais' ),
-                'attributes'     => array(
-                    'required'   => true,
-                ),
+                'desc'           => __( 'Selecione a data de publicação oficial do Edital', 'ifrs-portal-plugin-editais' ),
                 'type'           => 'date',
                 'timestamp'      => true,
                 'js_options'     => array(
                     'dateFormat' => 'dd/mm/yy'
-                )
+                ),
+                'attributes'     => array(
+                    'required'   => true,
+                ),
 
             ),
         )
@@ -101,26 +112,26 @@ function editais_meta_boxes( $meta_boxes ) {
             array(
                 'id'               => 'edital_file',
                 'name'             => __( 'Edital', 'ifrs-portal-plugin-editais' ),
-                'desc'             => __('Envio do Edital original', 'ifrs-portal-plugin-editais' ),
+                'desc'             => __( 'Envio do Edital original', 'ifrs-portal-plugin-editais' ),
                 'type'             => 'file_advanced',
                 'max_file_uploads' => 1,
             ),
             array(
                 'id'               => 'edital_retifica_files',
                 'name'             => __( 'Retificações', 'ifrs-portal-plugin-editais' ),
-                'desc'             => __('Envio das retificações ao Edital', 'ifrs-portal-plugin-editais' ),
+                'desc'             => __( 'Envio das retificações ao Edital', 'ifrs-portal-plugin-editais' ),
                 'type'             => 'file_advanced',
             ),
             array(
                 'id'               => 'edital_anexos_files',
                 'name'             => __( 'Anexos', 'ifrs-portal-plugin-editais' ),
-                'desc'             => __('Envio dos Anexos do Edital', 'ifrs-portal-plugin-editais' ),
+                'desc'             => __( 'Envio dos Anexos do Edital', 'ifrs-portal-plugin-editais' ),
                 'type'             => 'file_advanced',
             ),
             array(
                 'id'               => 'edital_publica_files',
                 'name'             => __( 'Demais Publicações', 'ifrs-portal-plugin-editais' ),
-                'desc'             => __('Envio dos demais arquivos publicados em função do Edital (homologações, resultados e etc.)', 'ifrs-portal-plugin-editais' ),
+                'desc'             => __( 'Envio dos demais arquivos publicados em função do Edital (homologações, resultados e etc.)', 'ifrs-portal-plugin-editais' ),
                 'type'             => 'file_advanced',
             ),
         ),
