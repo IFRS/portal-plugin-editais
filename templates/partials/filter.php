@@ -32,7 +32,7 @@
                 <legend class="col-12">Data do Edital</legend>
                 <div class="form-group col-12 col-sm-6">
                     <?php $field_id = uniqid(); ?>
-                    <label for="<?php echo $field_id; ?>" class="mb-sm-0 mr-sm-1">De</label>
+                    <label for="<?php echo $field_id; ?>" class="mb-sm-0 mr-sm-1">de</label>
                     <input type="date" id="<?php echo $field_id; ?>" name="edital-data-inicio" value="<?php echo ($_POST['edital-data-inicio']) ? sanitize_text_field($_POST['edital-data-inicio']) : ''; ?>" class="form-control form-control-sm mr-sm-1">
                     <small class="form-text text-muted">No formato <em>dia/mês/ano</em>, por exemplo 29/12/2008</small>
                 </div>
