@@ -11,7 +11,7 @@
     //     'orderby' => 'term_order',
     // ));
 
-    $has_filter = isset($_POST['edital-data-inicio']) || isset($_POST['edital-data-fim']) || isset($_POST['edital_category']);
+    $has_filter = !empty($_POST['edital-data-inicio']) || !empty($_POST['edital-data-fim']) || !empty($_POST['edital_category']);
 ?>
 <aside class="filter">
     <?php $collapse_id = uniqid(); ?>
@@ -33,13 +33,13 @@
                 <div class="form-group col-12 col-sm-6">
                     <?php $field_id = uniqid(); ?>
                     <label for="<?php echo $field_id; ?>" class="mb-sm-0 mr-sm-1">de</label>
-                    <input type="date" id="<?php echo $field_id; ?>" name="edital-data-inicio" value="<?php echo ($_POST['edital-data-inicio']) ? sanitize_text_field($_POST['edital-data-inicio']) : ''; ?>" class="form-control form-control-sm mr-sm-1">
+                    <input type="date" id="<?php echo $field_id; ?>" name="edital-data-inicio" value="<?php echo (!empty($_POST['edital-data-inicio'])) ? sanitize_text_field($_POST['edital-data-inicio']) : ''; ?>" class="form-control form-control-sm mr-sm-1">
                     <small class="form-text text-muted">No formato <em>dia/mês/ano</em>, por exemplo 29/12/2008</small>
                 </div>
                 <div class="form-group col-12 col-sm-6">
                     <?php $field_id = uniqid(); ?>
                     <label for="<?php echo $field_id; ?>" class="mb-sm-0 mr-sm-1">até</label>
-                    <input type="date" id="<?php echo $field_id; ?>" name="edital-data-fim" value="<?php echo ($_POST['edital-data-fim']) ? sanitize_text_field($_POST['edital-data-fim']) : ''; ?>" class="form-control form-control-sm">
+                    <input type="date" id="<?php echo $field_id; ?>" name="edital-data-fim" value="<?php echo (!empty($_POST['edital-data-fim'])) ? sanitize_text_field($_POST['edital-data-fim']) : ''; ?>" class="form-control form-control-sm">
                     <small class="form-text text-muted">No formato <em>dia/mês/ano</em>, por exemplo 29/12/2008</small>
                 </div>
             </fieldset>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <?php foreach ($categorias as $categoria): ?>
                         <?php $field_id = uniqid(); ?>
-                        <?php $categoria_check = (isset($_POST['edital_category']) && in_array($categoria->slug, $_POST['edital_category'])) || is_tax('edital_category', $categoria->slug); ?>
+                        <?php $categoria_check = (!empty($_POST['edital_category']) && in_array($categoria->slug, $_POST['edital_category'])) || is_tax('edital_category', $categoria->slug); ?>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="edital_category[]" value="<?php echo $categoria->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $categoria_check ? 'checked' : ''; ?>>
                             <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $categoria->name; ?></label>
@@ -62,7 +62,7 @@
                         ?>
                         <?php foreach ($filhos as $filho) : ?>
                             <?php $field_id = uniqid(); ?>
-                            <?php $filho_check = (isset($_POST['edital_category']) && in_array($filho->slug, $_POST['edital_category'])) || is_tax('edital_category', $filho->slug); ?>
+                            <?php $filho_check = (!empty($_POST['edital_category']) && in_array($filho->slug, $_POST['edital_category'])) || is_tax('edital_category', $filho->slug); ?>
                             <div class="form-check ml-3">
                                 <input class="form-check-input" type="checkbox" name="edital_category[]" value="<?php echo $filho->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $filho_check ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $filho->name; ?></label>
