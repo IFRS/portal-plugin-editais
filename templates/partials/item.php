@@ -10,25 +10,25 @@
             $edital_files = array();
             $edital_files = array_merge(
                 $edital_files,
-                array_map(function($arr){
+                array_map(function($arr) {
                     return $arr + ['date' => get_the_modified_date('U', $arr['ID']), 'group' => 'Edital'];
                 }, rwmb_meta('edital_file' ))
             );
             $edital_files = array_merge(
                 $edital_files,
-                array_map(function($arr){
+                array_map(function($arr) {
                     return $arr + ['date' => get_the_modified_date('U', $arr['ID']), 'group' => 'Retificações'];
                 }, rwmb_meta('edital_retifica_files' ))
             );
             $edital_files = array_merge(
                 $edital_files,
-                array_map(function($arr){
+                array_map(function($arr) {
                     return $arr + ['date' => get_the_modified_date('U', $arr['ID']), 'group' => 'Anexos'];
                 }, rwmb_meta('edital_anexos_files' ))
             );
             $edital_files = array_merge(
                 $edital_files,
-                array_map(function($arr){
+                array_map(function($arr) {
                     return $arr + ['date' => get_the_modified_date('U', $arr['ID']), 'group' => 'Publicações'];
                 }, rwmb_meta('edital_publica_files' ))
             );
@@ -60,7 +60,7 @@
         <h3 class="edital__dados-title"><?php _e('Dados do Edital'); ?></h3>
         <p><strong><?php _e('Data de Publica&ccedil;&atilde;o:'); ?></strong>&nbsp;<?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'edital_date' ) ); ?></p>
         <p><strong><?php _e('&Uacute;ltima Modifica&ccedil;&atilde;o:'); ?></strong>&nbsp;<?php the_modified_date(); ?></p>
-        <p><strong><?php _e('Categorias:'); ?></strong>&nbsp;<?php echo get_the_term_list( get_the_ID(), 'edital_category', '', ', ', '' ); ?></p>
-        <!-- <p><strong><?php _e('Status:'); ?></strong>&nbsp;<?php echo get_the_term_list( get_the_ID(), 'edital_status', '', ', ', '' ); ?></p> -->
+        <p><strong><?php _e('Categorias:'); ?></strong>&nbsp;<?php echo ($categorias = get_the_term_list( get_the_ID(), 'edital_category', '', ', ', '' )) ? $categorias : '-'; ?></p>
+        <p><strong><?php _e('Status:'); ?></strong>&nbsp;<?php echo ($status = get_the_term_list( get_the_ID(), 'edital_status', '', ', ', '' )) ? $status : '-'; ?></p>
     </aside>
 </section>
