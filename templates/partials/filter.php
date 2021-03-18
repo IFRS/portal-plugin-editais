@@ -11,7 +11,7 @@
         'orderby' => 'term_order',
     ));
 
-    $has_filter = !empty($_POST['edital-data-inicio']) || !empty($_POST['edital-data-fim']) || !empty($_POST['edital_category']);
+    $has_filter = !empty($_POST['edital-data-inicio']) || !empty($_POST['edital-data-fim']) || !empty($_POST['edital_category']) || !empty($_POST['edital_status']);
 ?>
 <aside class="filter">
     <?php $collapse_id = uniqid(); ?>
