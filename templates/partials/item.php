@@ -58,9 +58,30 @@
     </article>
     <aside class="edital__dados">
         <h3 class="edital__dados-title"><?php _e('Dados do Edital'); ?></h3>
-        <p><strong><?php _e('Data de Publica&ccedil;&atilde;o:'); ?></strong>&nbsp;<?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'edital_date' ) ); ?></p>
-        <p><strong><?php _e('&Uacute;ltima Modifica&ccedil;&atilde;o:'); ?></strong>&nbsp;<?php the_modified_date(); ?></p>
-        <p><strong><?php _e('Categorias:'); ?></strong>&nbsp;<?php echo ($categorias = get_the_term_list( get_the_ID(), 'edital_category', '', ', ', '' )) ? $categorias : '-'; ?></p>
-        <p><strong><?php _e('Status:'); ?></strong>&nbsp;<?php echo ($status = get_the_term_list( get_the_ID(), 'edital_status', '', ', ', '' )) ? $status : '-'; ?></p>
+        <p>
+            <strong><?php _e('Data Oficial do Edital'); ?></strong>
+            <br>
+            <?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'edital_date' ) ); ?>
+        </p>
+        <p>
+            <strong><?php _e('Data de Publica&ccedil;&atilde;o'); ?></strong>
+            <br>
+            <?php the_date(); ?>
+        </p>
+        <p>
+            <strong><?php _e('&Uacute;ltima Modifica&ccedil;&atilde;o'); ?></strong>
+            <br>
+            <?php the_modified_date(); ?>
+        </p>
+        <p>
+            <strong><?php _e('Categorias'); ?></strong>
+            <br>
+            <?php echo ($categorias = get_the_term_list( get_the_ID(), 'edital_category', '', ', ', '' )) ? $categorias : '-'; ?>
+        </p>
+        <p>
+            <strong><?php _e('Status'); ?></strong>
+            <br>
+            <?php echo ($status = get_the_term_list( get_the_ID(), 'edital_status', '', ', ', '' )) ? $status : '-'; ?>
+        </p>
     </aside>
 </section>

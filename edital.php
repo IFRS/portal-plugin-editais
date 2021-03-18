@@ -92,7 +92,7 @@ function editais_meta_boxes( $meta_boxes ) {
             array(
                 'id'             => 'edital_date',
                 'name'           => __( 'Data de Publicação', 'ifrs-portal-plugin-editais' ),
-                'desc'           => __( 'Selecione a data de publicação oficial do Edital', 'ifrs-portal-plugin-editais' ),
+                'desc'           => __( 'Selecione a data de publicação oficial do Edital.', 'ifrs-portal-plugin-editais' ),
                 'type'           => 'date',
                 'timestamp'      => true,
                 'js_options'     => array(
@@ -101,7 +101,6 @@ function editais_meta_boxes( $meta_boxes ) {
                 'attributes'     => array(
                     'required'   => true,
                 ),
-
             ),
         )
     );
