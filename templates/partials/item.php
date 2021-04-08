@@ -2,7 +2,11 @@
 
 <section class="edital">
     <article class="edital__main">
-        <h2 class="edital__title"><?php the_title(); ?></h2>
+        <h2 class="edital__title">
+            <?php the_title(); ?>
+            <br>
+            <small>de <?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'edital_date' ) ); ?></small>
+        </h2>
         <div class="edital__content">
             <?php the_content(); ?>
         </div>
@@ -59,19 +63,14 @@
     <aside class="edital__dados">
         <h3 class="edital__dados-title"><?php _e('Dados do Edital'); ?></h3>
         <p>
-            <strong><?php _e('Data Oficial do Edital'); ?></strong>
-            <br>
-            <?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'edital_date' ) ); ?>
-        </p>
-        <p>
             <strong><?php _e('Data de Publica&ccedil;&atilde;o'); ?></strong>
             <br>
-            <?php the_date(); ?>
+            <?php the_date(); ?> <?php _e('às'); ?> <?php echo get_the_time('G\hi'); ?>
         </p>
         <p>
             <strong><?php _e('&Uacute;ltima Modifica&ccedil;&atilde;o'); ?></strong>
             <br>
-            <?php the_modified_date(); ?>
+            <?php the_modified_date(); ?> <?php _e('às'); ?> <?php echo get_the_time('G\hi'); ?>
         </p>
         <p>
             <strong><?php _e('Categorias'); ?></strong>
