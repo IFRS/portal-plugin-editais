@@ -1,37 +1,25 @@
+<?php do_action('ifrs_editais_before_archive'); ?>
+
 <section class="editais">
-    <h2 class="editais__title">
-        <?php
-            _e('Editais', 'ifrs-portal-plugin-editais');
+  <?php echo do_blocks( '<!-- wp:query-title {"type":"archive","level":2,"showPrefix":false,"className":"mb-4"} /-->' ); ?>
 
-            if (is_tax('edital_category') && !isset($_POST['edital_category'])) {
-                printf(__(' na categoria %s', 'ifrs-portal-plugin-editais'), single_term_title('', false));
-            }
+  <?php echo wpautop(get_option( 'ifrs_editais_intro' )); ?>
 
-            if (is_tax('edital_status') && !isset($_POST['edital_status'])) {
-                printf(__(' com o status %s', 'ifrs-portal-plugin-editais'), single_term_title('', false));
-            }
+  <?php load_template(plugin_dir_path(__FILE__) . 'filter.php'); ?>
 
-            if (is_search() && get_search_query()) {
-                printf(__('<small>(Resultados com o termo &ldquo;%s&rdquo;)</small>', 'ifrs-portal-plugin-editais'), get_search_query());
-            }
-        ?>
-    </h2>
-
-    <?php echo wpautop(get_option( 'ifrs_editais_intro' )); ?>
-
-    <?php load_template(plugin_dir_path(__FILE__) . 'filter.php'); ?>
-
-    <?php if (have_posts()) : ?>
-        <?php load_template(plugin_dir_path(__FILE__) . 'loop.php'); ?>
+  <?php if (have_posts()) : ?>
+    <?php load_template(plugin_dir_path(__FILE__) . 'loop.php'); ?>
+  <?php else : ?>
+    <?php if (is_search()) : ?>
+      <div class="alert alert-danger" role="alert">
+        <p><?php _e('N&atilde;o foram encontrados Editais com os termos buscados.', 'ifrs-portal-plugin-editais'); ?></p>
+      </div>
     <?php else : ?>
-            <?php if (is_search()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php printf(__('N&atilde;o foram encontrados Editais com os termos buscados.', 'ifrs-portal-plugin-editais'), single_term_title('', false)); ?>
-                </div>
-            <?php else : ?>
-                <div class="alert alert-warning" role="alert">
-                    <strong><?php _e('Ops!'); ?></strong>&nbsp;<?php printf(__('N&atilde;o foram encontrados Editais publicados.', 'ifrs-portal-plugin-editais'), single_term_title('', false)); ?>
-                </div>
-            <?php endif; ?>
+      <div class="alert alert-warning" role="alert">
+        <strong><?php _e('Ops!'); ?></strong>&nbsp;<?php _e('N&atilde;o foram encontrados Editais publicados.', 'ifrs-portal-plugin-editais'); ?>
+      </div>
     <?php endif; ?>
+  <?php endif; ?>
 </section>
+
+<?php do_action('ifrs_editais_after_archive'); ?>
