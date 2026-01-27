@@ -55,3 +55,15 @@ add_filter('taxonomy_template', function($template) {
 
     return $template;
 });
+
+// Ajusta o título padrão do bloco Query Title para esta taxonomia
+add_filter('get_the_archive_title', function($title) {
+    if (is_tax('edital_category')) {
+        $term = get_queried_object();
+        if ($term && ! is_wp_error($term)) {
+            $title = sprintf(__('Editais na categoria %s', 'ifrs-portal-plugin-editais'), $term->name);
+        }
+    }
+
+    return $title;
+});

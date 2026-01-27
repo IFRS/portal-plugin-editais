@@ -207,3 +207,19 @@ add_filter('wp_editor_settings', function($settings) {
     }
     return $settings;
 });
+
+/**
+ * Ajusta o título
+ */
+add_filter('the_title', function($title, $post_id) {
+  if (is_singular('edital')) {
+    // Adiciona a data em small
+    if (rwmb_meta('edital_date', array(), $post_id)) {
+        $title .= '<br><small>de ' .
+        date_i18n(get_option('date_format'), rwmb_meta('edital_date', array(), $post_id)) .
+        '</small>';
+    }
+  }
+
+  return $title;
+}, 10, 2);
