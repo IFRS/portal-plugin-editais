@@ -19,6 +19,7 @@ require_once('edital.php');
 require_once('queries.php');
 require_once('roles.php');
 require_once('config.php');
+require_once('blocks.php');
 
 register_activation_hook(__FILE__, function () {
   flush_rewrite_rules();
