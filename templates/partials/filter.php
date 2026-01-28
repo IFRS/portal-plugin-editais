@@ -17,7 +17,7 @@
   <details <?php echo ($has_filter) ? 'open' : ''; ?>>
     <summary><?php _e('Filtros', 'ifrs-portal-plugin-editais'); ?></summary>
 
-    <form action="<?php echo get_post_type_archive_link( 'edital' ); ?>" method="POST" class="filter__form">
+    <form action="<?php echo get_post_type_archive_link( 'edital' ); ?>" method="POST">
       <fieldset class="row">
         <legend class="col-12">Data do Edital</legend>
         <div class="form-group col-12 col-sm-6">
