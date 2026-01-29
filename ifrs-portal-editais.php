@@ -7,7 +7,7 @@ Description: Plugin para gerenciar Editais.
 Version:     2.0.0-dev
 Author:      Ricardo Moro
 Author URI:  https://github.com/ricardomoro
-License:     GPL3
+License:     GNU General Public License 3.0
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 Text Domain: ifrs-portal-plugin-editais
 Domain Path: /lang
