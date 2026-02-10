@@ -1,7 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
 import {
   useBlockProps,
-  InspectorControls
+  InspectorControls,
+  RichText,
+  InnerBlocks
 } from '@wordpress/block-editor';
 import {
   PanelBody,
@@ -27,27 +29,24 @@ registerBlockType('ifrs/ultimos-editais', {
     const mockEditais = [
       {
         id: 1,
-        date: '22/01/2026',
-        time: '14h30',
+        date: '28/12/2009',
+        time: '09h30',
         types: ['Pesquisa'],
-        title: 'Edital nº 123',
-        link: '#'
+        title: 'Edital nº 123'
       },
       {
         id: 2,
-        date: '21/01/2026',
+        date: '29/12/2009',
         time: '10h15',
         types: ['Ensino', 'Interno'],
-        title: 'Edital nº 321',
-        link: '#'
+        title: 'Edital nº 321'
       },
       {
         id: 3,
-        date: '20/01/2026',
+        date: '30/12/2009',
         time: '16h45',
         types: ['Extensão'],
-        title: 'Edital nº 99',
-        link: '#'
+        title: 'Edital nº 99'
       },
     ];
 
@@ -73,35 +72,42 @@ registerBlockType('ifrs/ultimos-editais', {
 
         <div {...blockProps}>
           <div className="ultimos-editais">
-            {title && (
-              <h2 className="ultimos-editais__title">{title}</h2>
-            )}
+            <RichText
+              tagName="h2"
+              className="ultimos-editais__title"
+              value={title}
+              onChange={(value) => setAttributes({ title: value })}
+              placeholder="Insira o título"
+              allowedFormats={[]}
+            />
             {mockEditais.slice(0, postsPerPage).map((doc) => (
-              <div key={doc.id} className="ultimos-editais__edital">
-                <p className="ultimos-editais__edital-datetime">
-                  {doc.date}
-                  &agrave;s
-                  {doc.time}
-                </p>
-                &bull;
-                <ul className="ultimos-editais__edital-types">
-                  {doc.types.map((type, idx) => (
-                    <li key={idx}>{type}</li>
-                  ))}
-                </ul>
-                <h3 className="ultimos-editais__edital-title">
-                  <a href={doc.link}>{doc.title}</a>
+              <a key={doc.id} href="#" className="edital-recente">
+                <div className="edital-recente__meta">
+                  <p class="edital-recente__datetime">
+                    {doc.date}
+                    &agrave;s
+                    {doc.time}
+                  </p>
+
+                  &bull;
+                  <ul className="edital-recente__taxonomy-list">
+                    {doc.types.map((type, idx) => (
+                      <li key={idx}>{type}</li>
+                    ))}
+                  </ul>
+                </div>
+                <h3 className="edital-recente__title">
+                  {doc.title}
                 </h3>
-              </div>
+              </a>
             ))}
           </div>
 
-          <div className="acesso-todos-editals">
-            <hr className="acesso-todos-editals__separador" />
-            <a href="#" className="acesso-todos-editals__link">
-              Acesse todos os Editais
-            </a>
-          </div>
+          <InnerBlocks
+            allowedBlocks={['core/buttons']}
+            template={[['core/buttons', { layout: { type: 'flex', justifyContent: 'center' } }, [['core/button', { className: 'is-style-outline', text: 'Acesse todos os Editais' }]]]]}
+            templateLock="insert"
+          />
         </div>
       </>
     );
